@@ -95,6 +95,7 @@ patch_windows_zip() {
 		cd .. # ddnet-insta-windows
 
 		zip -r ddnet-insta-windows.zip ddnet-insta-windows
+		rm -rf ddnet-insta-windows
 	}
 	popd # tmp
 }
@@ -107,7 +108,54 @@ patch_windows_zip() {
 # and will include the ddnet-insta map bundle
 # and remove the client stuff
 patch_linux_zip() {
-	test
+	if [ ! -f ddnet-ubuntu-latest.zip ]
+	then
+		echo "Error: missing file ddnet-ubuntu-latest.zip"
+		echo "       get it from the github CI"
+		exit 1
+	fi
+
+	cp ddnet-ubuntu-latest.zip tmp
+	pushd tmp
+	{
+		unzip ddnet-ubuntu-latest.zip
+		rm ddnet-ubuntu-latest.zip
+		tar xvf ./DDNet-*.tar.xz
+		rm ./DDNet-*.tar.xz
+
+		mv ./DDNet-*/ ddnet-insta-linux
+
+		cd ./ddnet-insta-linux
+		{
+			# TODO: place some sample autoexec_server.cfg here
+
+			rm DDNet
+			rm dilate
+			rm demo_extract_chat
+
+			pushd data
+			{
+				rm ./*.png
+				rm touch_controls.json
+				rm autoexec_server.cfg
+				rm -rf ./{maps,maps7,mapres,skins,skins7}/
+				rm -rf ./{editor,assets,audio,fonts,shader}
+				rm -rf ./{countryflags,communityicons}/
+				rm -rf ./{languages,themes,menuimages}/
+
+				# map bundle
+				# https://github.com/ddnet-insta/maps
+				cp -r ../../maps/maps .
+				cp -r ../../maps/maps7 .
+			}
+			popd # data
+		}
+		cd .. # ddnet-insta-linux
+
+		zip -r ddnet-insta-linux.zip ddnet-insta-linux
+		rm -rf ddnet-insta-linux
+	}
+	popd # tmp
 }
 
 refresh_tmp
