@@ -158,7 +158,40 @@ patch_linux_zip() {
 	popd # tmp
 }
 
+# expects a github CI built
+# release archive named
+# ddnet-macOS-latest.zip
+# in the current directory
+#
+# and will include the ddnet-insta map bundle
+# and remove the client stuff
+patch_macos_zip() {
+	if [ ! -f ddnet-macOS-latest.zip ]
+	then
+		echo "Error: missing file ddnet-macOS-latest.zip"
+		echo "       get it from the github CI"
+		exit 1
+	fi
+
+	# TODO: implement
+	cp ddnet-macOS-latest.zip tmp/ddnet-insta-macOS.zip
+}
+
+add_html_links() {
+	echo "[*] There are now new zip files in the tmp/ directory"
+	echo "[*] upload them here https://github.com/ddnet-insta/ddnet-insta/releases"
+	echo "[*] then patch something like this in index.html:"
+	echo ""
+	cat <<-EOF
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-windows.zip">Windows</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-macOS.zip">macOS</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-linux.zip">Linux</a>
+	EOF
+}
+
 refresh_tmp
 get_map_bundle
-# patch_windows_zip
+patch_windows_zip
 patch_linux_zip
+patch_macos_zip
+add_html_links
