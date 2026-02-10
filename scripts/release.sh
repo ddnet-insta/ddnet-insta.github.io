@@ -102,24 +102,24 @@ patch_windows_zip() {
 
 # expects a github CI built
 # release archive named
-# ddnet-ubuntu-latest.zip
+# ddnet-ubuntu-latest-fancy.zip
 # in the current directory
 #
 # and will include the ddnet-insta map bundle
 # and remove the client stuff
 patch_linux_zip() {
-	if [ ! -f ddnet-ubuntu-latest.zip ]
+	if [ ! -f ddnet-ubuntu-latest-fancy.zip ]
 	then
 		echo "Error: missing file ddnet-ubuntu-latest.zip"
 		echo "       get it from the github CI"
 		exit 1
 	fi
 
-	cp ddnet-ubuntu-latest.zip tmp
+	cp ddnet-ubuntu-latest-fancy.zip tmp
 	pushd tmp
 	{
-		unzip ddnet-ubuntu-latest.zip
-		rm ddnet-ubuntu-latest.zip
+		unzip ddnet-ubuntu-latest-fancy.zip
+		rm ddnet-ubuntu-latest-fancy.zip
 		tar xvf ./DDNet-*.tar.xz
 		rm ./DDNet-*.tar.xz
 
