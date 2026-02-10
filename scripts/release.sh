@@ -177,7 +177,7 @@ patch_macos_zip() {
 	pushd tmp
 	{
 		unzip ddnet-macOS-latest.zip
-		rm ddnet-ubuntu-latest.zip
+		rm ddnet-macOS-latest.zip
 		mv ./DDNet-*-macos.dmg ddnet-insta-macOS.dmg
 	}
 	popd # tmp
