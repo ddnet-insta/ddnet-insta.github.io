@@ -183,9 +183,9 @@ add_html_links() {
 	echo "[*] then patch something like this in index.html:"
 	echo ""
 	cat <<-EOF
-	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-windows.zip">Windows</a>
-	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-macOS.zip">macOS</a>
-	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.7/ddnet-insta-linux.zip">Linux</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-windows.zip">Windows</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-macOS.zip">macOS</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-linux.zip">Linux</a>
 	EOF
 }
 
