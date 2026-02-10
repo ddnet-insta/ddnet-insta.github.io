@@ -173,8 +173,14 @@ patch_macos_zip() {
 		exit 1
 	fi
 
-	# TODO: implement
-	cp ddnet-macOS-latest.zip tmp/ddnet-insta-macOS.zip
+	cp ddnet-macOS-latest.zip tmp
+	pushd tmp
+	{
+		unzip ddnet-macOS-latest.zip
+		rm ddnet-ubuntu-latest.zip
+		mv ./DDNet-*-macos.dmg ddnet-insta-macOS.dmg
+	}
+	popd # tmp
 }
 
 add_html_links() {
@@ -184,7 +190,7 @@ add_html_links() {
 	echo ""
 	cat <<-EOF
 	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-windows.zip">Windows</a>
-	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-macOS.zip">macOS</a>
+	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-macOS.dmg">macOS</a>
 	  <a href="https://github.com/ddnet-insta/ddnet-insta/releases/download/v1.8/ddnet-insta-linux.zip">Linux</a>
 	EOF
 }
